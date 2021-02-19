@@ -17,9 +17,24 @@ export default function Home() {
   return (
     <GameList>
       <h1>Home</h1>
+
       <h2>Upcoming Games</h2>
       <Games>
         {upcoming.map((game) => (
+          <Game game={game} key={game.id} />
+        ))}
+      </Games>
+
+      <h2>Popular Games</h2>
+      <Games>
+        {popular.map((game) => (
+          <Game game={game} key={game.id} />
+        ))}
+      </Games>
+
+      <h2>New Games</h2>
+      <Games>
+        {newGames.map((game) => (
           <Game game={game} key={game.id} />
         ))}
       </Games>
