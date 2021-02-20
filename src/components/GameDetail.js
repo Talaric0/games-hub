@@ -30,6 +30,23 @@ export default function GameDetail({ pathId }) {
     }
   };
 
+  const detail = useSelector((state) => state.detail);
+
+  //stars
+  const getStars = () => {
+    const stars = [];
+    const rating = Math.round(detail.game.rating);
+    for (let i = 1; i <= 5; i++) {
+      if (i <= rating) {
+        stars.push(<img alt="star" key={i} src={starFull}></img>);
+      } else {
+        stars.push(<img alt="star" key={i} src={starEmpty}></img>);
+      }
+    }
+    console.log(stars);
+    return stars;
+  };
+
   //get the platform
   const getPlatform = (platform) => {
     return (
@@ -46,8 +63,6 @@ export default function GameDetail({ pathId }) {
     );
   };
 
-  const detail = useSelector((state) => state.detail);
-
   return (
     <>
       {!detail.isLoading && (
@@ -59,6 +74,7 @@ export default function GameDetail({ pathId }) {
                   {detail.game.name}
                 </motion.h3>
                 <p>Rating: {detail.game.rating}</p>
+                {getStars()}
               </div>
               <Info>
                 <h3>Platforms</h3>
@@ -147,8 +163,8 @@ const Stats = styled(motion.div)`
   align-items: center;
   justify-content: space-between;
   img {
-    width: 2rem;
-    height: 2rem;
+    width: 1.3rem;
+    height: 1.3rem;
     display: inline;
   }
 `;
