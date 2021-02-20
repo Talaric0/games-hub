@@ -21,6 +21,7 @@ export default function Home() {
         dispatch(loadDetail(pathId));
       }
     });
+    // eslint-disable-next-line
   }, []);
 
   const { popular, newGames, upcoming, searched } = useSelector(
