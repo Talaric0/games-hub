@@ -7,6 +7,8 @@ import logo from "../img/logo.svg";
 import { fetchSearch } from "../actions/gamesAction";
 import { useDispatch } from "react-redux";
 import { fadeIn } from "../animations";
+//img
+import hero from "../img/hero.webp";
 
 const Nav = () => {
   const dispatch = useDispatch();
@@ -23,6 +25,11 @@ const Nav = () => {
       dispatch(fetchSearch(textInput));
     }
     setTextInput("");
+    window.scrollTo({
+      top: 660,
+      left: 0,
+      behavior: "smooth",
+    });
   };
   const clearSearched = () => {
     dispatch({ type: "CLEAR_SEARCHED" });
@@ -46,6 +53,13 @@ const Nav = () => {
 const StyledNav = styled(motion.nav)`
   padding: 3rem 5rem;
   text-align: center;
+  min-height: 70vh;
+  background-image: url(${hero});
+  object-fit: cover;
+  backdrop-filter: blur(5px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
   input {
     width: 30%;
     font-size: 1.5rem;

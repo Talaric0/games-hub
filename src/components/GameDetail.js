@@ -44,7 +44,6 @@ export default function GameDetail({ pathId }) {
         stars.push(<img alt="star" key={i} src={starEmpty}></img>);
       }
     }
-    console.log(stars);
     return stars;
   };
 
@@ -62,6 +61,11 @@ export default function GameDetail({ pathId }) {
         iOS: apple,
       }[platform] || gamepad
     );
+  };
+
+  //when video starts
+  const handleVideoStart = (e) => {
+    e.target.volume = 0.3;
   };
 
   return (
@@ -93,17 +97,30 @@ export default function GameDetail({ pathId }) {
                 </Platforms>
               </Info>
             </Stats>
-            <Media>
+            {/* <Media>
               <motion.img
                 src={smallImage(detail.game.background_image, 1280)}
                 alt={detail.game.name}
                 layoutId={`image ${pathId}`}
               />
-            </Media>
-            <Description>
-              <p>{detail.game.description_raw}</p>
-            </Description>
-            <div className="gallery">
+            </Media> */}
+
+            <Gallery>
+              {detail.game.clip && (
+                <div className="embed-responsive embed-responsive-16by9 video-container">
+                  <motion.video
+                    className="embed-responsive-item"
+                    title={detail.game.name}
+                    onLoadStart={handleVideoStart}
+                    layoutId={`image ${pathId}`}
+                    allowFullScreen
+                    controls
+                    autoPlay
+                  >
+                    <source src={detail.game.clip.clips.full} />
+                  </motion.video>
+                </div>
+              )}
               <Carousel>
                 {detail.screenshots?.map((screenshot) => {
                   return (
@@ -121,7 +138,10 @@ export default function GameDetail({ pathId }) {
                   );
                 })}
               </Carousel>
-            </div>
+            </Gallery>
+            <Description>
+              <p>{detail.game.description_raw}</p>
+            </Description>
           </Detail>
         </CardShadow>
       )}
@@ -183,17 +203,25 @@ const Platforms = styled(motion.div)`
   display: flex;
   justify-content: space-evenly;
   img {
-    margin-left: 2rem;
+    margin-left: 1rem;
+    width: 3rem;
+    height: 3rem;
   }
 `;
 
-const Media = styled(motion.div)`
-  margin-top: 5rem;
-  img {
-    width: 100%;
-  }
-`;
+// const Media = styled(motion.div)`
+//   margin-top: 5rem;
+//   img {
+//     width: 100%;
+//   }
+// `;
 
 const Description = styled(motion.div)`
   margin: 5rem 0rem;
+`;
+
+const Gallery = styled(motion.div)`
+  .video-container {
+    margin: 3rem 0;
+  }
 `;
