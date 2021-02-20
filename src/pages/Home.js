@@ -12,21 +12,20 @@ import { fadeIn } from "../animations";
 
 export default function Home() {
   const dispatch = useDispatch();
+  //get location
+  const location = useLocation();
+  const pathId = location.pathname.split("/")[2];
   useEffect(() => {
     dispatch(loadGames()).then(() => {
       if (pathId) {
         dispatch(loadDetail(pathId));
       }
     });
-  }, [dispatch]);
+  }, []);
 
   const { popular, newGames, upcoming, searched } = useSelector(
     (state) => state.games
   );
-
-  //get location
-  const location = useLocation();
-  const pathId = location.pathname.split("/")[2];
 
   return (
     <GameList variants={fadeIn} initial="hidden" animate="show">

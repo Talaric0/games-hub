@@ -108,17 +108,16 @@ export default function GameDetail({ pathId }) {
             <Gallery>
               {detail.game.clip && (
                 <div className="embed-responsive embed-responsive-16by9 video-container">
-                  <motion.video
+                  <video
                     className="embed-responsive-item"
                     title={detail.game.name}
                     onLoadStart={handleVideoStart}
-                    layoutId={`image ${pathId}`}
                     allowFullScreen
                     controls
                     autoPlay
                   >
                     <source src={detail.game.clip.clips.full} />
-                  </motion.video>
+                  </video>
                 </div>
               )}
               <Carousel>

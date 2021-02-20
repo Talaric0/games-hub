@@ -25,11 +25,6 @@ const Nav = () => {
       dispatch(fetchSearch(textInput));
     }
     setTextInput("");
-    window.scrollTo({
-      top: 660,
-      left: 0,
-      behavior: "smooth",
-    });
   };
   const clearSearched = () => {
     dispatch({ type: "CLEAR_SEARCHED" });
