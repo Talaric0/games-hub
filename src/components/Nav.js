@@ -52,6 +52,7 @@ const StyledNav = styled(motion.nav)`
     padding: 0.5rem;
     border: none;
     margin-top: 1rem;
+    background: #777777;
     outline: none;
     box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.2);
   }
@@ -69,6 +70,7 @@ const Logo = styled(motion.div)`
   display: flex;
   justify-content: center;
   padding: 1rem;
+  color: #dadada;
   cursor: pointer;
   img {
     height: 1.8rem;

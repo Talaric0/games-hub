@@ -8,6 +8,7 @@ import Game from "../components/Game";
 import styled from "styled-components";
 import { motion, AnimatePresence, AnimateSharedLayout } from "framer-motion";
 import GameDetail from "../components/GameDetail";
+import { fadeIn } from "../animations";
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -28,7 +29,7 @@ export default function Home() {
   const pathId = location.pathname.split("/")[2];
 
   return (
-    <GameList>
+    <GameList variants={fadeIn} initial="hidden" animate="show">
       <AnimateSharedLayout type="crossfade">
         <AnimatePresence>
           {pathId && <GameDetail pathId={pathId} />}
@@ -36,7 +37,7 @@ export default function Home() {
 
         {searched[0] && (
           <div className="searched">
-            <h2>Searched Games</h2>
+            <h2>Search Results</h2>
             <Games>
               {searched.map((game) => (
                 <Game game={game} key={game.id} />

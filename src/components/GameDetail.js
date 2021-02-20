@@ -2,6 +2,7 @@ import React from "react";
 //Styling and Animation
 import styled from "styled-components";
 import { motion } from "framer-motion";
+import Carousel from "react-bootstrap/Carousel";
 //Redux
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
@@ -103,16 +104,23 @@ export default function GameDetail({ pathId }) {
               <p>{detail.game.description_raw}</p>
             </Description>
             <div className="gallery">
-              {detail.screenshots?.map((screenshot) => {
-                return (
-                  <img
-                    src={smallImage(screenshot.image, 1280)}
-                    key={screenshot.id}
-                    alt={detail.game.name}
-                    loading="lazy"
-                  />
-                );
-              })}
+              <Carousel>
+                {detail.screenshots?.map((screenshot) => {
+                  return (
+                    <Carousel.Item>
+                      <img
+                        className="d-block w-100"
+                        src={smallImage(screenshot.image, 1280)}
+                        key={screenshot.id}
+                        alt={detail.game.name}
+                      />
+                      <Carousel.Caption>
+                        <p>{detail.game.name}</p>
+                      </Carousel.Caption>
+                    </Carousel.Item>
+                  );
+                })}
+              </Carousel>
             </div>
           </Detail>
         </CardShadow>
@@ -140,7 +148,7 @@ const CardShadow = styled(motion.div)`
   }
 
   &::-webkit-scrollbar-track {
-    background: white;
+    background: #777777;
   }
 `;
 
@@ -148,7 +156,7 @@ const Detail = styled(motion.div)`
   width: 70%;
   border-radius: 1rem;
   padding: 2rem 5rem;
-  background: white;
+  background-color: #333;
   position: absolute;
   left: 10%;
   color: black;
