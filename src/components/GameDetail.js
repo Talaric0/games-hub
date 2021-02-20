@@ -24,29 +24,29 @@ export default function GameDetail() {
     <div>
       <CardShadow>
         <Detail>
-          <div className="stats">
+          <Stats>
             <div className="rating">
               <h3>{detail.game.name}</h3>
               <p>Rating: {detail.game.rating}</p>
             </div>
-            <div className="info">
+            <Info>
               <h3>Platforms</h3>
-              <div className="platforms">
+              <Platforms>
                 {detail.game.platforms &&
                   detail.game.platforms.map((result) => {
                     return (
                       <h3 key={result.platform.id}>{result.platform.name}</h3>
                     );
                   })}
-              </div>
-            </div>
-          </div>
-          <div className="media">
+              </Platforms>
+            </Info>
+          </Stats>
+          <Media>
             <img src={detail.game.background_image} alt={detail.game.name} />
-          </div>
-          <div className="description">
+          </Media>
+          <Description>
             <p>{detail.game.description_raw}</p>
-          </div>
+          </Description>
           <div className="gallery">
             {detail.screenshots &&
               detail.screenshots.map((screenshot) => {
@@ -119,7 +119,7 @@ const Platforms = styled(motion.div)`
   display: flex;
   justify-content: space-evenly;
   img {
-    margin-left: 3rem;
+    margin-left: 2rem;
   }
 `;
 
