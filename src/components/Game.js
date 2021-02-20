@@ -12,6 +12,7 @@ export default function Game({ game }) {
 
   const dispatch = useDispatch();
   const loadDetailHandler = () => {
+    document.body.style.overflow = "hidden";
     dispatch(loadDetail(id, short_screenshots));
   };
 
