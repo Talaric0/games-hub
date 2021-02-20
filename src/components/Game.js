@@ -4,14 +4,14 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 //redux
 import { useDispatch } from "react-redux";
-import { loadDetail } from "../actions/detailAcion";
+import { loadDetail } from "../actions/detailAction";
 
 export default function Game({ game }) {
   const { name, released, background_image, id, short_screenshots } = game;
 
   const dispatch = useDispatch();
   const loadDetailHandler = () => {
-    dispatch(loadDetail(id));
+    dispatch(loadDetail(id, short_screenshots));
   };
 
   return (
