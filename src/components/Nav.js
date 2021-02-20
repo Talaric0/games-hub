@@ -17,7 +17,11 @@ const Nav = () => {
   };
   const submitSearch = (e) => {
     e.preventDefault();
-    dispatch(fetchSearch(textInput));
+    if (textInput === "") {
+      dispatch({ type: "CLEAR_SEARCHED" });
+    } else {
+      dispatch(fetchSearch(textInput));
+    }
     setTextInput("");
   };
   const clearSearched = () => {

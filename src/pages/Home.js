@@ -19,7 +19,9 @@ export default function Home() {
     });
   }, [dispatch]);
 
-  const { popular, newGames, upcoming } = useSelector((state) => state.games);
+  const { popular, newGames, upcoming, searched } = useSelector(
+    (state) => state.games
+  );
 
   //get location
   const location = useLocation();
@@ -32,20 +34,28 @@ export default function Home() {
           {pathId && <GameDetail pathId={pathId} />}
         </AnimatePresence>
 
+        {searched[0] && (
+          <div className="searched">
+            <h2>Searched Games</h2>
+            <Games>
+              {searched.map((game) => (
+                <Game game={game} key={game.id} />
+              ))}
+            </Games>
+          </div>
+        )}
         <h2>Upcoming Games</h2>
         <Games>
           {upcoming.map((game) => (
             <Game game={game} key={game.id} />
           ))}
         </Games>
-
         <h2>Popular Games</h2>
         <Games>
           {popular.map((game) => (
             <Game game={game} key={game.id} />
           ))}
         </Games>
-
         <h2>New Games</h2>
         <Games>
           {newGames.map((game) => (
