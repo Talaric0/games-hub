@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 //Redux
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-// import { smallImage } from "../util";
+import { smallImage } from "../util";
 //IMAGES
 import playstation from "../img/playstation.svg";
 import steam from "../img/steam.svg";
@@ -52,7 +52,10 @@ export default function GameDetail() {
               </Info>
             </Stats>
             <Media>
-              <img src={detail.game.background_image} alt={detail.game.name} />
+              <img
+                src={smallImage(detail.game.background_image, 1280)}
+                alt={detail.game.name}
+              />
             </Media>
             <Description>
               <p>{detail.game.description_raw}</p>
@@ -61,7 +64,7 @@ export default function GameDetail() {
               {detail.screenshots?.map((screenshot) => {
                 return (
                   <img
-                    src={screenshot.image}
+                    src={smallImage(screenshot.image, 1280)}
                     key={screenshot.id}
                     alt={detail.game.name}
                   />

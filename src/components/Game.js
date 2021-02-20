@@ -6,6 +6,8 @@ import { motion } from "framer-motion";
 import { useDispatch } from "react-redux";
 import { loadDetail } from "../actions/detailAction";
 import { Link } from "react-router-dom";
+//util
+import { smallImage } from "../util";
 
 export default function Game({ game }) {
   const { name, released, background_image, id, short_screenshots } = game;
@@ -21,7 +23,7 @@ export default function Game({ game }) {
       <Link to={`/game/${id}`}>
         <h3>{name}</h3>
         <p>{released}</p>
-        <img src={background_image} alt={name} />
+        <img src={smallImage(background_image, 640)} alt={name} />
       </Link>
     </StyledGame>
   );
