@@ -32,12 +32,11 @@ export default function GameDetail() {
             <Info>
               <h3>Platforms</h3>
               <Platforms>
-                {detail.game.platforms &&
-                  detail.game.platforms.map((result) => {
-                    return (
-                      <h3 key={result.platform.id}>{result.platform.name}</h3>
-                    );
-                  })}
+                {detail.game.platforms?.map((result) => {
+                  return (
+                    <h3 key={result.platform.id}>{result.platform.name}</h3>
+                  );
+                })}
               </Platforms>
             </Info>
           </Stats>
@@ -48,16 +47,15 @@ export default function GameDetail() {
             <p>{detail.game.description_raw}</p>
           </Description>
           <div className="gallery">
-            {detail.screenshots &&
-              detail.screenshots.map((screenshot) => {
-                return (
-                  <img
-                    src={screenshot.image}
-                    key={screenshot.id}
-                    alt={detail.game.name}
-                  />
-                );
-              })}
+            {detail.screenshots?.map((screenshot) => {
+              return (
+                <img
+                  src={screenshot.image}
+                  key={screenshot.id}
+                  alt={detail.game.name}
+                />
+              );
+            })}
           </div>
         </Detail>
       </CardShadow>

@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loadGames } from "../actions/gamesAction";
+import { useLocation } from "react-router-dom";
 //components
 import Game from "../components/Game";
 import styled from "styled-components";
@@ -15,9 +16,13 @@ export default function Home() {
 
   const { popular, newGames, upcoming } = useSelector((state) => state.games);
 
+  //get location
+  const location = useLocation();
+  const pathId = location.pathname.split("/")[2];
+
   return (
     <GameList>
-      <GameDetail />
+      {pathId && <GameDetail />}
 
       <h2>Upcoming Games</h2>
       <Games>
