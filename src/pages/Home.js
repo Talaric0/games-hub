@@ -5,6 +5,7 @@ import { loadGames } from "../actions/gamesAction";
 import Game from "../components/Game";
 import styled from "styled-components";
 import { motion } from "framer-motion";
+import GameDetail from "../components/GameDetail";
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -16,7 +17,7 @@ export default function Home() {
 
   return (
     <GameList>
-      <h1>Home</h1>
+      <GameDetail />
 
       <h2>Upcoming Games</h2>
       <Games>
