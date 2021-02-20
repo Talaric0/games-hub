@@ -8,8 +8,10 @@ import { useHistory } from "react-router-dom";
 import { smallImage } from "../util";
 //IMAGES
 import playstation from "../img/playstation.svg";
+import PS5_logo from "../img/PS5_logo.svg";
 import steam from "../img/steam.svg";
 import xbox from "../img/xbox.svg";
+import seriesx from "../img/seriesx.svg";
 import nintendo from "../img/nintendo.svg";
 import apple from "../img/apple.svg";
 import gamepad from "../img/gamepad.svg";
@@ -17,7 +19,7 @@ import gamepad from "../img/gamepad.svg";
 import starEmpty from "../img/star-empty.png";
 import starFull from "../img/star-full.png";
 
-export default function GameDetail() {
+export default function GameDetail({ pathId }) {
   const history = useHistory();
   //exit detail
   const exitDetailHandler = (e) => {
@@ -28,16 +30,34 @@ export default function GameDetail() {
     }
   };
 
+  //get the platform
+  const getPlatform = (platform) => {
+    return (
+      {
+        "PlayStation 4": playstation,
+        "PlayStation 5": PS5_logo,
+        "Xbox Series S/X": seriesx,
+        "Xbox S": xbox,
+        "Xbox One": xbox,
+        "Nintendo Switch": nintendo,
+        PC: steam,
+        iOS: apple,
+      }[platform] || gamepad
+    );
+  };
+
   const detail = useSelector((state) => state.detail);
 
   return (
     <>
       {!detail.isLoading && (
         <CardShadow className="shadow" onClick={exitDetailHandler}>
-          <Detail>
+          <Detail layoutId={pathId}>
             <Stats>
               <div className="rating">
-                <h3>{detail.game.name}</h3>
+                <motion.h3 layoutId={`title ${pathId}`}>
+                  {detail.game.name}
+                </motion.h3>
                 <p>Rating: {detail.game.rating}</p>
               </div>
               <Info>
@@ -45,16 +65,22 @@ export default function GameDetail() {
                 <Platforms>
                   {detail.game.platforms?.map((result) => {
                     return (
-                      <h3 key={result.platform.id}>{result.platform.name}</h3>
+                      <img
+                        key={result.platform.id}
+                        src={getPlatform(result.platform.name)}
+                        alt={result.platform.name}
+                        title={result.platform.name}
+                      />
                     );
                   })}
                 </Platforms>
               </Info>
             </Stats>
             <Media>
-              <img
+              <motion.img
                 src={smallImage(detail.game.background_image, 1280)}
                 alt={detail.game.name}
+                layoutId={`image ${pathId}`}
               />
             </Media>
             <Description>
@@ -67,6 +93,7 @@ export default function GameDetail() {
                     src={smallImage(screenshot.image, 1280)}
                     key={screenshot.id}
                     alt={detail.game.name}
+                    loading="lazy"
                   />
                 );
               })}
@@ -102,7 +129,7 @@ const CardShadow = styled(motion.div)`
 `;
 
 const Detail = styled(motion.div)`
-  width: 80%;
+  width: 70%;
   border-radius: 1rem;
   padding: 2rem 5rem;
   background: white;
