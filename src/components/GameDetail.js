@@ -36,7 +36,7 @@ export default function GameDetail({ pathId }) {
   //stars
   const getStars = () => {
     const stars = [];
-    const rating = Math.round(detail.game.rating);
+    const rating = Math.floor(detail.game.rating);
     for (let i = 1; i <= 5; i++) {
       if (i <= rating) {
         stars.push(<img alt="star" key={i} src={starFull}></img>);
