@@ -10,6 +10,8 @@
 
 <p>It was developed using create-react-app and function components. Axios (API requests), Styled components (design), Framer Motion (animation) and React Router (routing).</p>
 
+<p>Deployed on Vercel.</p>
+
 ## Prerequisites
 
 <ul>
@@ -38,7 +40,6 @@
 ## Roadmap
 
 <ol>
-  <li>Mobile Friendly</li>
   <li>Add more game sections</li>
   <li>Add more details to game cards</li>
 </ol>
