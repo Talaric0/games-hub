@@ -183,6 +183,14 @@ const Detail = styled(motion.div)`
   img {
     width: 100%;
   }
+  @media (max-width: 600px) {
+    width: 83%;
+    padding: 1rem 1rem;
+    left: 8%;
+    .carousel-caption {
+      display: none;
+    }
+  }
 `;
 
 const Stats = styled(motion.div)`
@@ -206,6 +214,13 @@ const Platforms = styled(motion.div)`
     width: 3rem;
     height: 3rem;
   }
+  @media (max-width: 600px) {
+    img {
+      margin-left: 0.2rem;
+      width: 1rem;
+      height: 1rem;
+    }
+  }
 `;
 
 // const Media = styled(motion.div)`
@@ -217,6 +232,15 @@ const Platforms = styled(motion.div)`
 
 const Description = styled(motion.div)`
   margin: 5rem 0rem;
+  p {
+    text-align: justify;
+  }
+  @media (max-width: 600px) {
+    margin: 2rem 0rem;
+    p {
+      font-size: 15px;
+    }
+  }
 `;
 
 const Gallery = styled(motion.div)`
